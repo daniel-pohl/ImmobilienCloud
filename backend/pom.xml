@@ -17,7 +17,7 @@
 		<java.version>22</java.version>
 		<sonar.organization>daniel-pohl</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<sonar.projectName>ImmobilienCloud</sonar.projectName>
+		<sonar.projectName>daniel-pohl_ImmobilienCloud_backend</sonar.projectName>
 	</properties>
 	<dependencies>
 		<dependency>
