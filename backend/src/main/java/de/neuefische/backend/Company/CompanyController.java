@@ -16,7 +16,7 @@ public class CompanyController {
         this.companyService = companyService;
     }
 
-    @GetMapping("/todo")
+    @GetMapping("/company")
     public List<Company> getCompanies() {
         return companyService.allCompanies();
     }
