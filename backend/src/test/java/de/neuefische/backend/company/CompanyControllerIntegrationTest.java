@@ -1,4 +1,4 @@
-package de.neuefische.backend.Company;
+package de.neuefische.backend.company;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;

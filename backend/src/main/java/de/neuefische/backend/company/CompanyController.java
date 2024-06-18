@@ -1,4 +1,4 @@
-package de.neuefische.backend.Company;
+package de.neuefische.backend.company;
 
 
 import org.springframework.web.bind.annotation.GetMapping;

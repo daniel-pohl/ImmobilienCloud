@@ -1,4 +1,4 @@
-package de.neuefische.backend.Company;
+package de.neuefische.backend.company;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,9 +19,24 @@ class CompanyServiceTest {
         when(mockCompanyRepo.findAll()).thenReturn(expectedCompanies);
 
         CompanyService companyService1 = new CompanyService(mockCompanyRepo);
+
         List<Company> result = companyService1.allCompanies();
         verify(mockCompanyRepo).findAll();
         assertEquals(expectedCompanies, result);
+
+        // Mock-Verhalten für den Testfall definieren
+
+
+        // TodoService mit dem Mock erstellen
+
+
+        // Test ausführen
+
+
+        // Überprüfen, ob die Methode aufgerufen wurde
+
+
+        // Überprüfen, ob das erwartete Ergebnis zurückgegeben wurde
 
 
     }

@@ -1,4 +1,4 @@
-package de.neuefische.backend.Company;
+package de.neuefische.backend.company;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
