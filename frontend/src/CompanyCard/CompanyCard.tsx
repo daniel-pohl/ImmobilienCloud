@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {Company} from "./Company.ts";
 import './CompanyCard.css';
+import {Link} from "react-router-dom";
 
 function CompanyCard() {
 
@@ -22,10 +23,14 @@ function CompanyCard() {
 
     return (
         <div className="div-company-list">
+
             <h1>Company List</h1>
             <ul>
                 {companies.map(company => (
                     <li className="company-list-item" key={company.id}>
+                        <Link to={`/company/${company.id}`}>
+                            <h2>Link to Details</h2>
+                        </Link>
                         <h2>{company.name}</h2>
                         <p>{company.street} {company.streetNumber}, {company.plz} {company.city}, {company.country}</p>
                         <p>{company.phoneNumber}</p>
