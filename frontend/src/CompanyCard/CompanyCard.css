@@ -11,3 +11,9 @@
     margin: 5px;
     padding: 10px;
 }
+
+ul{
+    display: block;
+    padding: 1px;
+    margin: 1px;
+}

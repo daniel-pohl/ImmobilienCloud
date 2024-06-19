@@ -24,7 +24,7 @@ function CompanyCard() {
     return (
         <div className="div-company-list">
 
-            <h1>Company List</h1>
+            <h1>Liste aller Firmen:</h1>
             <ul>
                 {companies.map(company => (
                     <li className="company-list-item" key={company.id}>
@@ -32,11 +32,7 @@ function CompanyCard() {
                             <h2>Link to Details</h2>
                         </Link>
                         <h2>{company.name}</h2>
-                        <p>{company.street} {company.streetNumber}, {company.plz} {company.city}, {company.country}</p>
-                        <p>{company.phoneNumber}</p>
-                        <p>{company.email}</p>
-                        <p>{company.website}</p>
-                        <p>{company.comment}</p>
+
                     </li>
                 ))}
             </ul>

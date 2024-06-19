@@ -27,8 +27,11 @@ function CompanyDetail() {
             <Link to={`/`}>
                 <h2>Back</h2>
             </Link>
-            <h1>{company.name}</h1>
-            <p>{company.street} {company.streetNumber}, {company.plz} {company.city}, {company.country}</p>
+            <h1>Detailansicht Firma</h1>
+            <h2>{company.name}</h2>
+            <p>{company.city}, {company.plz} </p>
+            <p>{company.country}</p>
+            <p>{company.street} {company.streetNumber}</p>
             <p>{company.phoneNumber}</p>
             <p>{company.email}</p>
             <p>{company.website}</p>
