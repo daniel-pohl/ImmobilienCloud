@@ -21,6 +21,7 @@ public class CompanyController {
     public List<Company> getCompanies() {
         return companyService.allCompanies();
     }
+
     @GetMapping("/company/{id}")
     public Company getCompanyById(@PathVariable String id) throws CompanyNotFoundException {
         return companyService.findCompanyById(id);

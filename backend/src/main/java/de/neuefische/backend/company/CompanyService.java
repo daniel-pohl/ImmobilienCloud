@@ -16,6 +16,8 @@ public class CompanyService {
     public List<Company> allCompanies() {
         return companyRepo.findAll();
     }
+
+
     public Company findCompanyById(String id) throws CompanyNotFoundException {
         return companyRepo.findById(id)
                 .orElseThrow(() -> new CompanyNotFoundException("Company with id "+ id + "not found")

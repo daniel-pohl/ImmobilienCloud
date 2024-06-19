@@ -32,7 +32,6 @@ function CompanyCard() {
                             <h2>Link to Details</h2>
                         </Link>
                         <h2>{company.name}</h2>
-
                     </li>
                 ))}
             </ul>
