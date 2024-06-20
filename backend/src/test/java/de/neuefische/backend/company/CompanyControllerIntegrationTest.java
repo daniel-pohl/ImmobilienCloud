@@ -29,7 +29,7 @@ class CompanyControllerIntegrationTest {
     @DirtiesContext
     @Test
     void getAllCompanies_whenCompaniesInDB_thenReturnListOfCompanies() throws Exception {
-        Company company = new Company(null, "TestFirma3", "TestCountry3", "TestCity3", "133335", "TestStreet", "3", "123-3333-7890", "test3@example.com", "http://www.testfirma3.com", "This is a test comment333.");
+        Company company = new Company(null, "TestFirma3", "TestCountry3", "TestCity3", "133335", "TestStreet", "3", "123-3333-7890", "test3@example.com", "https://www.testfirma3.com", "This is a test comment333.");
         companyRepo.save(company);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/company"))
@@ -45,7 +45,7 @@ class CompanyControllerIntegrationTest {
                                               "streetNumber": "3",
                                               "phoneNumber": "123-3333-7890",
                                               "email": "test3@example.com",
-                                              "website": "http://www.testfirma3.com",
+                                              "website": "https://www.testfirma3.com",
                                               "comment": "This is a test comment333."
                                         }
                             ]
@@ -55,7 +55,7 @@ class CompanyControllerIntegrationTest {
     @DirtiesContext
     @Test
     void getAllCompanies_whenOneCompanyInDB_thenReturnListOfOne() throws Exception {
-        Company company = new Company(null, "TestFirma3", "TestCountry3", "TestCity3", "133335", "TestStreet", "3", "123-3333-7890", "test3@example.com", "http://www.testfirma3.com", "This is a test comment333.");
+        Company company = new Company(null, "TestFirma3", "TestCountry3", "TestCity3", "133335", "TestStreet", "3", "123-3333-7890", "test3@example.com", "https://www.testfirma3.com", "This is a test comment333.");
         companyRepo.save(company);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/company"))
@@ -71,7 +71,7 @@ class CompanyControllerIntegrationTest {
                                   "streetNumber": "3",
                                   "phoneNumber": "123-3333-7890",
                                   "email": "test3@example.com",
-                                  "website": "http://www.testfirma3.com",
+                                  "website": "https://www.testfirma3.com",
                                   "comment": "This is a test comment333."
                             }
                         ]
@@ -83,7 +83,7 @@ class CompanyControllerIntegrationTest {
     @DirtiesContext
     @Test
     void getCompanyById_whenCompanyInDB_thenReturnCompany() throws Exception {
-        Company company = new Company("123", "TestFirma3", "TestCountry3", "TestCity3", "133335", "TestStreet", "3", "123-3333-7890", "test3@example.com", "http://www.testfirma3.com", "This is a test comment333.");
+        Company company = new Company("123", "TestFirma3", "TestCountry3", "TestCity3", "133335", "TestStreet", "3", "123-3333-7890", "test3@example.com", "https://www.testfirma3.com", "This is a test comment333.");
 
         companyRepo.save(company);
 
@@ -101,7 +101,7 @@ class CompanyControllerIntegrationTest {
                                               "streetNumber": "3",
                                               "phoneNumber": "123-3333-7890",
                                               "email": "test3@example.com",
-                                              "website": "http://www.testfirma3.com",
+                                              "website": "https://www.testfirma3.com",
                                               "comment": "This is a test comment333."
                                         }
                         

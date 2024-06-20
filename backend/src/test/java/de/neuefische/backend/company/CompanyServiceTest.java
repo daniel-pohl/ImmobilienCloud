@@ -24,8 +24,6 @@ class CompanyServiceTest {
         verify(mockCompanyRepo).findAll();
         assertEquals(expectedCompanies, result);
     }
-    //nennen wie die Funktion heisst und whenOneProductInDB_thenReturnListOfOne
-    //bei allCompanies nur einen Test, weil ich eh "alles" finde
 
     @Test
     void findCompanyById_companyFound() throws CompanyNotFoundException {
@@ -37,7 +35,6 @@ class CompanyServiceTest {
         verify(mockCompanyRepo).findById("123");
         assertEquals(expectedCompany, result);
     }
-    //was ist eine checked excep oder unchecked?
 
     @Test
     void getCompanyById_companyNotFound() {
