@@ -51,7 +51,7 @@ class CompanyServiceTest {
 
     }
     @Test
-    void saveCompany_validCompany_shouldReturnCreatedCompany(){
+    void saveCompany_whenValidCompany_shouldReturnCreatedCompany(){
         CompanyDTO givenCompanyDTO = new CompanyDTO("John Doe", "Germany", "Berlin", "61355", "Demostreet", "132", "+492374928349", "test@mail.de", "www.test.de", "comment1235345 comment1235");
 
         Company expectedCompany = CompanyMapper.toEntity(givenCompanyDTO);
