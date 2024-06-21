@@ -17,8 +17,8 @@ public class CompanyDTO {
     private String plz;
     private String street;
     private String streetNumber;
-    private String email;
     private String phoneNumber;
+    private String email;
     private String website;
     private String comment;
 
