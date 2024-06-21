@@ -26,7 +26,6 @@ function CompanyCard() {
             <Link to="/company">
                 <button className="buttonCreate">Neue Firma anlegen</button>
             </Link>
-
             <h1>Liste aller Firmen:</h1>
             <ul>
                 {companies.map(company => (
