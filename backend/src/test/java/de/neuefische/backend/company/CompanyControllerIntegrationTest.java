@@ -1,5 +1,6 @@
 package de.neuefische.backend.company;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -17,6 +18,8 @@ class CompanyControllerIntegrationTest {
     private MockMvc mockMvc;
     @Autowired
     private CompanyRepo companyRepo;
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @DirtiesContext
     @Test
@@ -107,4 +110,36 @@ class CompanyControllerIntegrationTest {
                         
                         """));
     }
+    @DirtiesContext
+    @Test
+    void addCompany_whenValidRequest_thenReturnSavedCompany() throws Exception {
+        CompanyDTO companyDTO = new CompanyDTO("TestFirma4", "TestCountry4", "TestCity4", "133336", "TestStreet", "4", "123-4444-7890", "test4@example.com", "https://www.testfirma4.com", "This is a test comment444.");
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/company")
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(companyDTO)))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("TestFirma4"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.country").value("TestCountry4"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.city").value("TestCity4"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.plz").value("133336"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.street").value("TestStreet"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.streetNumber").value("4"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.phoneNumber").value("123-4444-7890"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.email").value("test4@example.com"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.website").value("https://www.testfirma4.com"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.comment").value("This is a test comment444."));
+    }
+    @DirtiesContext
+    @Test
+    void addCompany_whenInvalidRequest_thenReturnBadRequest() throws Exception {
+
+        CompanyDTO invalidCompanyDTO = new CompanyDTO(null, "TestCountry4", "TestCity4", "133336", "TestStreet", "4", "123-4444-7890", "test4@example.com", "https://www.testfirma4.com", "This is a test comment444.");
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/company")
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(invalidCompanyDTO)))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest());
+    }
+
 }
