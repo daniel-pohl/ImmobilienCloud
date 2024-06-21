@@ -1,12 +1,17 @@
-import { useEffect, useState } from 'react';
-import {Link, useParams} from 'react-router-dom';
+import {useEffect, useState} from 'react';
+import {Link, useNavigate, useParams} from 'react-router-dom';
 import axios from 'axios';
+import './CompanyDetail.css';
 import {Company} from "../CompanyCard/Company.ts";
 
 
+
 function CompanyDetail() {
-    const { id } = useParams<{ id: string }>();
+    const {id} = useParams<{ id: string }>();
     const [company, setCompany] = useState<Company | null>(null);
+
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         axios.get(`/api/company/${id}`)
@@ -18,12 +23,26 @@ function CompanyDetail() {
             });
     }, [id]);
 
+    const handleDelete = () => {
+        axios.delete(`/api/company/${id}`)
+            .then(() => {
+                navigate(-1);
+                alert("Company "+  company?.name + "deleted successfully");
+            })
+            .catch(error => {
+                console.error('Error deleting company:', error);
+            });
+    };
     if (company === null) {
         return <div>Company not found or loading...</div>;
     }
 
     return (
         <div>
+
+            <br/>
+            <button className={"deleteButton"} onClick={handleDelete}>Delete</button>
+            <br/>
             <Link to={`/`}>
                 <h2>Back</h2>
             </Link>

@@ -4,9 +4,12 @@ import {Company} from "./Company.ts";
 import './CompanyCard.css';
 import {Link} from "react-router-dom";
 
+
 function CompanyCard() {
 
     const [companies, setCompanies] = useState<Company[]>([]);
+
+
 
     function fetchCompanies(){
 
@@ -15,6 +18,7 @@ function CompanyCard() {
                 setCompanies(response.data)
             })
     }
+
     useEffect(fetchCompanies,[])
 
     if(!companies){
