@@ -31,4 +31,8 @@ public class CompanyController {
         return companyService.saveCompany(companyDTO);
     }
 
+    @DeleteMapping("/company/{id}")
+    public void deleteCompany(@PathVariable String id) {
+        companyService.deleteCompanyById(id);
+    }
 }

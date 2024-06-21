@@ -50,6 +50,7 @@ class CompanyServiceTest {
         verify(mockCompanyRepo).findById("123");
 
     }
+
     @Test
     void saveCompany_whenValidCompany_shouldReturnCreatedCompany(){
         CompanyDTO givenCompanyDTO = new CompanyDTO("John Doe", "Germany", "Berlin", "61355", "Demostreet", "132", "+492374928349", "test@mail.de", "www.test.de", "comment1235345 comment1235");
@@ -67,5 +68,11 @@ class CompanyServiceTest {
         assertEquals(expectedCompany, result);
     }
 
+    @Test
+    void deleteCompany_whenMethodCalled_thenDeleteMethodOnRepositoryWasCalledOnlyOnce() {
+        CompanyService companyService1 = new CompanyService(mockCompanyRepo, mockUuidService);
+        companyService1.deleteCompanyById("123");
+        verify(mockCompanyRepo, times(1)).deleteById("123");
+    }
 
 }

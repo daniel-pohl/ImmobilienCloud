@@ -1,14 +1,19 @@
 package de.neuefische.backend.company;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.ServletException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -140,6 +145,36 @@ class CompanyControllerIntegrationTest {
                         .contentType("application/json")
                         .content(objectMapper.writeValueAsString(invalidCompanyDTO)))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest());
+    }
+
+    @DirtiesContext
+    @Test
+    void deleteCompany_whenCompanyInDB_thenDBDoesNotContainCompanyAnymore() throws Exception {
+
+        MvcResult resultCompanyToDelete = mockMvc.perform(MockMvcRequestBuilders.post("/api/company")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                            {
+                                              "name": "TestFirma3",
+                                              "country": "TestCountry3",
+                                              "city": "TestCity3",
+                                              "plz": "133335",
+                                              "street": "TestStreet",
+                                              "streetNumber": "3",
+                                              "phoneNumber": "123-3333-7890",
+                                              "email": "test3@example.com",
+                                              "website": "https://www.testfirma3.com",
+                                              "comment": "This is a test comment333."
+                            }
+                        """)).andReturn();
+
+
+        ObjectMapper mapper = new ObjectMapper();
+        String idToDelete = mapper.readValue(resultCompanyToDelete.getResponse().getContentAsString(), Company.class).getId();
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/company/" + idToDelete));
+        assertThrows(ServletException.class, () -> mockMvc.perform(MockMvcRequestBuilders.get("/api/company/" + idToDelete)));
+
     }
 
 }
