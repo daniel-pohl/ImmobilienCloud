@@ -52,39 +52,46 @@ function CompanyCreate() {
 
             <h2>Neue Firma erstellen</h2>
             <form onSubmit={handleSubmit}>
-                <label htmlFor={"name"}>Name:</label>
-                <input id={"name"} type="text" name="name" value={formData.name} onChange={handleChange} required/><br/>
-
+                <label>Name:
+                    <input type="text" name="name" value={formData.name} onChange={handleChange} required/>
+                    <br/>
+                </label>
                 <label>Land:
                     <input type="text" name="country" value={formData.country} onChange={handleChange} required/>
                     <br/>
                 </label>
-
-
-                <label>Stadt:</label>
-                <input type="text" name="city" value={formData.city} onChange={handleChange} required/><br/>
-
-                <label>PLZ:</label>
-                <input type="text" name="plz" value={formData.plz} onChange={handleChange} required/><br/>
-
-                <label>Straße:</label>
-                <input type="text" name="street" value={formData.street} onChange={handleChange} required/><br/>
-
-                <label>Hausnummer:</label>
-                <input type="text" name="streetNumber" value={formData.streetNumber} onChange={handleChange}/><br/>
-
-                <label>Telefonnummer:</label>
-                <input type="text" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange}/><br/>
-
-                <label>E-Mail:</label>
-                <input type="email" name="email" value={formData.email} onChange={handleChange}/><br/>
-
-                <label>Website:</label>
-                <input type="url" name="website" value={formData.website} onChange={handleChange}/><br/>
-
-                <label>Kommentar:</label>
-                <textarea name="comment" value={formData.comment} onChange={handleChange}/><br/>
-
+                <label>Stadt:
+                    <input type="text" name="city" value={formData.city} onChange={handleChange} required/>
+                    <br/>
+                </label>
+                <label>PLZ:
+                    <input type="text" name="plz" value={formData.plz} onChange={handleChange} required/>
+                    <br/>
+                </label>
+                <label>Straße:
+                    <input type="text" name="street" value={formData.street} onChange={handleChange} required/>
+                    <br/>
+                </label>
+                <label>Hausnummer:
+                    <input type="text" name="streetNumber" value={formData.streetNumber} onChange={handleChange}/>
+                    <br/>
+                </label>
+                <label>Telefonnummer:
+                    <input type="text" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange}/>
+                    <br/>
+                </label>
+                <label>E-Mail:
+                    <input type="email" name="email" value={formData.email} onChange={handleChange}/>
+                    <br/>
+                </label>
+                <label>Website:
+                    <input type="url" name="website" value={formData.website} onChange={handleChange}/>
+                    <br/>
+                </label>
+                <label>Kommentar:
+                    <textarea name="comment" value={formData.comment} onChange={handleChange}/>
+                    <br/>
+                </label>
                 <button type="submit">Firma erstellen</button>
             </form>
         </div>
