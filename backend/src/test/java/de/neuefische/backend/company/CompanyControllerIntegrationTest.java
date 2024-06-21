@@ -12,7 +12,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
@@ -168,9 +167,7 @@ class CompanyControllerIntegrationTest {
                             }
                         """)).andReturn();
 
-
-        ObjectMapper mapper = new ObjectMapper();
-        String idToDelete = mapper.readValue(resultCompanyToDelete.getResponse().getContentAsString(), Company.class).getId();
+        String idToDelete = objectMapper.readValue(resultCompanyToDelete.getResponse().getContentAsString(), Company.class).getId();
 
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/company/" + idToDelete));
         assertThrows(ServletException.class, () -> mockMvc.perform(MockMvcRequestBuilders.get("/api/company/" + idToDelete)));
