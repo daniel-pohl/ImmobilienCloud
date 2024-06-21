@@ -33,4 +33,8 @@ public class CompanyService {
         return companyRepo.save(company);
     }
 
+    public void deleteCompanyById(String id){
+            companyRepo.deleteById(id);
+    }
+
 }

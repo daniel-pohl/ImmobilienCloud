@@ -13,7 +13,6 @@ function App() {
           <Route path="/" element={<CompanyCard />} />
           <Route path="/company/:id" element={<CompanyDetail />} />
           <Route path="/company" element={<CompanyCreate />} />
-
       </Routes>
   )
 }
