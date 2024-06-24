@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
 function CompanyCreate() {
@@ -17,7 +17,7 @@ function CompanyCreate() {
         website: '',
         comment: ''
     });
-
+    const navigate = useNavigate();
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const {name, value} = event.target;
@@ -26,8 +26,11 @@ function CompanyCreate() {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const response = await axios.post('/api/company', formData);
+        const response = await axios.post('/api/company', formData).then();
+
         console.log('Response:', response.data);
+        navigate('/company');
+        alert('Company created successfully');
         setFormData({  // Reset the form fields to empty after successful submission
             name: '',
             country: '',
@@ -45,7 +48,7 @@ function CompanyCreate() {
 
     return (
         <div>
-            <Link to={`/`}>
+            <Link to={`/company`}>
                 <h2>Back</h2>
             </Link>
             <br/>
