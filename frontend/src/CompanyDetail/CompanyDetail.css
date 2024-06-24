@@ -3,6 +3,9 @@
     margin: 0 auto;
     padding: 2rem;
     text-align: left;
+    border: black solid 1px;
+    border-radius: 7px;
+
 }
 
 .topButtonsRow {

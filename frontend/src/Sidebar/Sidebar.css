@@ -1,0 +1,13 @@
+.sidebar-list-item{
+    border: black solid 1px;
+    border-radius: 5px;
+    margin: 5px;
+    list-style-type: none;
+    padding: 10px 10px;
+}
+
+ul{
+    display: block;
+    padding: 1px;
+    margin: 1px;
+}
