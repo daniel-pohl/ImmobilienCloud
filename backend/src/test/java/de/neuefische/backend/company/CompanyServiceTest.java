@@ -44,9 +44,8 @@ class CompanyServiceTest {
         when(mockCompanyRepo.findById("123")).thenReturn(Optional.empty());
 
         CompanyService companyService1 = new CompanyService(mockCompanyRepo, mockUuidService);
-        assertThrows(CompanyNotFoundException.class, () -> {
-            companyService1.findCompanyById("123");
-        });
+        assertThrows(CompanyNotFoundException.class, () ->
+                companyService1.findCompanyById("123"));
         verify(mockCompanyRepo).findById("123");
 
     }
@@ -74,5 +73,24 @@ class CompanyServiceTest {
         companyService1.deleteCompanyById("123");
         verify(mockCompanyRepo, times(1)).deleteById("123");
     }
+
+    @Test
+    void updateCompany_whenValidCompanyDTO_shouldReturnUpdatedCompany() throws CompanyNotFoundException {
+        Company existingCompany = new Company("123", "John Doe", "Germany", "Berlin", "61355", "Demostreet", "132", "+492374928349", "test@mail.de", "www.test.de", "comment1235345 comment1235");
+        CompanyDTO updatedCompanyDTO = new CompanyDTO("Jane Doe", "Germany", "Munich", "80331", "Newstreet", "456", "+491234567890", "jane@mail.de", "www.jane.de", "new comment");
+        Company expectedUpdatedCompany = new Company("123", "Jane Doe", "Germany", "Munich", "80331", "Newstreet", "456", "+491234567890", "jane@mail.de", "www.jane.de", "new comment");
+
+        when(mockCompanyRepo.findById("123")).thenReturn(Optional.of(existingCompany));
+        when(mockCompanyRepo.save(expectedUpdatedCompany)).thenReturn(expectedUpdatedCompany);
+
+        CompanyService companyService1 = new CompanyService(mockCompanyRepo, mockUuidService);
+        Company result = companyService1.updateCompany(updatedCompanyDTO, "123");
+
+        verify(mockCompanyRepo).findById("123");
+        verify(mockCompanyRepo).save(expectedUpdatedCompany);
+
+        assertEquals(expectedUpdatedCompany, result);
+    }
+
 
 }

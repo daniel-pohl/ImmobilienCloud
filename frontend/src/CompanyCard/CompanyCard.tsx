@@ -34,10 +34,10 @@ function CompanyCard() {
             <ul>
                 {companies.map(company => (
                     <li className="company-list-item" key={company.id}>
-                        <Link to={`/company/${company.id}`}>
-                            <h2>Link to Details</h2>
-                        </Link>
                         <h2>{company.name}</h2>
+                        <Link to={`/company/${company.id}`}>
+                            <h3>Details</h3>
+                        </Link>
                     </li>
                 ))}
             </ul>

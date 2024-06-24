@@ -1,7 +1,40 @@
+.topButtonsRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 4px;
+}
+
 .deleteButton{
     background-color: indianred;
     border: black solid 1px;
     padding: 5px 5px;
     cursor: pointer;
     border-radius: 5px;
+    color: black;
+    font-size: 25px;
+    height: 40px;
+}
+
+.backButton{
+    background-color: cornflowerblue;
+    border: black solid 1px;
+    padding: 5px 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: black;
+    height: 40px;
+    font-size: 25px;
+    margin: 0;
+}
+
+.updateButton{
+    background-color: orange;
+    border: black solid 1px;
+    padding: 5px 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: black;
+    height: 40px;
+    font-size: 25px;
 }
