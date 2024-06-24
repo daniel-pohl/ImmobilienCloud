@@ -65,9 +65,10 @@ function CompanyDetail() {
             </div>
             <form onSubmit={handleSubmit} className="companyForm">
                 <div className="formGroup">
-                    <label>Name:</label>
+                    <label htmlFor="name">Name:</label>
                     <input
                         type="text"
+                        id="name"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
@@ -75,9 +76,10 @@ function CompanyDetail() {
                     />
                 </div>
                 <div className="formGroup">
-                    <label>Country:</label>
+                    <label htmlFor="country">Country:</label>
                     <input
                         type="text"
+                        id="country"
                         name="country"
                         value={formData.country}
                         onChange={handleChange}
@@ -85,9 +87,10 @@ function CompanyDetail() {
                     />
                 </div>
                 <div className="formGroup">
-                    <label>City:</label>
+                    <label htmlFor="city">City:</label>
                     <input
                         type="text"
+                        id="city"
                         name="city"
                         value={formData.city}
                         onChange={handleChange}
@@ -95,9 +98,10 @@ function CompanyDetail() {
                     />
                 </div>
                 <div className="formGroup">
-                    <label>PLZ:</label>
+                    <label htmlFor="plz">PLZ:</label>
                     <input
                         type="text"
+                        id="plz"
                         name="plz"
                         value={formData.plz}
                         onChange={handleChange}
@@ -105,9 +109,10 @@ function CompanyDetail() {
                     />
                 </div>
                 <div className="formGroup">
-                    <label>Street:</label>
+                    <label htmlFor="street">Street:</label>
                     <input
                         type="text"
+                        id="street"
                         name="street"
                         value={formData.street}
                         onChange={handleChange}
@@ -115,44 +120,49 @@ function CompanyDetail() {
                     />
                 </div>
                 <div className="formGroup">
-                    <label>Street Number:</label>
+                    <label htmlFor="streetNumber">Street Number:</label>
                     <input
                         type="text"
+                        id="streetNumber"
                         name="streetNumber"
                         value={formData.streetNumber}
                         onChange={handleChange}
                     />
                 </div>
                 <div className="formGroup">
-                    <label>Phone Number:</label>
+                    <label htmlFor="phoneNumber">Phone Number:</label>
                     <input
                         type="text"
+                        id="phoneNumber"
                         name="phoneNumber"
                         value={formData.phoneNumber}
                         onChange={handleChange}
                     />
                 </div>
                 <div className="formGroup">
-                    <label>Email:</label>
+                    <label htmlFor="email">Email:</label>
                     <input
                         type="email"
+                        id="email"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
                     />
                 </div>
                 <div className="formGroup">
-                    <label>Website:</label>
+                    <label htmlFor="website">Website:</label>
                     <input
                         type="url"
+                        id="website"
                         name="website"
                         value={formData.website}
                         onChange={handleChange}
                     />
                 </div>
                 <div className="formGroup">
-                    <label>Comment:</label>
+                    <label htmlFor="comment">Comment:</label>
                     <textarea
+                        id="comment"
                         name="comment"
                         value={formData.comment}
                         onChange={handleChange}
