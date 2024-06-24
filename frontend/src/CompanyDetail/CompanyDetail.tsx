@@ -66,43 +66,97 @@ function CompanyDetail() {
             <form onSubmit={handleSubmit} className="companyForm">
                 <div className="formGroup">
                     <label>Name:</label>
-                    <input type="text" name="name" value={formData.name} onChange={handleChange} required/>
+                    <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                    />
                 </div>
                 <div className="formGroup">
                     <label>Country:</label>
-                    <input type="text" name="country" value={formData.country} onChange={handleChange} required/>
+                    <input
+                        type="text"
+                        name="country"
+                        value={formData.country}
+                        onChange={handleChange}
+                        required
+                    />
                 </div>
                 <div className="formGroup">
                     <label>City:</label>
-                    <input type="text" name="city" value={formData.city} onChange={handleChange} required/>
+                    <input
+                        type="text"
+                        name="city"
+                        value={formData.city}
+                        onChange={handleChange}
+                        required
+                    />
                 </div>
                 <div className="formGroup">
                     <label>PLZ:</label>
-                    <input type="text" name="plz" value={formData.plz} onChange={handleChange} required/>
+                    <input
+                        type="text"
+                        name="plz"
+                        value={formData.plz}
+                        onChange={handleChange}
+                        required
+                    />
                 </div>
                 <div className="formGroup">
                     <label>Street:</label>
-                    <input type="text" name="street" value={formData.street} onChange={handleChange} required/>
+                    <input
+                        type="text"
+                        name="street"
+                        value={formData.street}
+                        onChange={handleChange}
+                        required
+                    />
                 </div>
                 <div className="formGroup">
                     <label>Street Number:</label>
-                    <input type="text" name="streetNumber" value={formData.streetNumber} onChange={handleChange}/>
+                    <input
+                        type="text"
+                        name="streetNumber"
+                        value={formData.streetNumber}
+                        onChange={handleChange}
+                    />
                 </div>
                 <div className="formGroup">
                     <label>Phone Number:</label>
-                    <input type="text" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange}/>
+                    <input
+                        type="text"
+                        name="phoneNumber"
+                        value={formData.phoneNumber}
+                        onChange={handleChange}
+                    />
                 </div>
                 <div className="formGroup">
                     <label>Email:</label>
-                    <input type="email" name="email" value={formData.email} onChange={handleChange}/>
+                    <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                    />
                 </div>
                 <div className="formGroup">
                     <label>Website:</label>
-                    <input type="url" name="website" value={formData.website} onChange={handleChange}/>
+                    <input
+                        type="url"
+                        name="website"
+                        value={formData.website}
+                        onChange={handleChange}
+                    />
                 </div>
                 <div className="formGroup">
                     <label>Comment:</label>
-                    <textarea name="comment" value={formData.comment} onChange={handleChange}></textarea>
+                    <textarea
+                        name="comment"
+                        value={formData.comment}
+                        onChange={handleChange}
+                    ></textarea>
                 </div>
                 <button className="updateButton" type="submit">Update Company</button>
             </form>
