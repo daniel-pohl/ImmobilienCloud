@@ -31,7 +31,7 @@ class CompanyControllerIntegrationTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/company"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().json("[]"));
-    }
+    } 
 
     @DirtiesContext
     @Test
@@ -173,5 +173,31 @@ class CompanyControllerIntegrationTest {
         assertThrows(ServletException.class, () -> mockMvc.perform(MockMvcRequestBuilders.get("/api/company/" + idToDelete)));
 
     }
+
+    @DirtiesContext
+    @Test
+    void updateCompany_whenValidRequest_thenReturnUpdatedCompany() throws Exception {
+        Company existingCompany = new Company("123", "OldCompany", "OldCountry", "OldCity", "11111", "OldStreet", "1", "111-111-1111", "old@example.com", "https://www.oldcompany.com", "Old comment");
+        companyRepo.save(existingCompany);
+
+        CompanyDTO updatedCompanyDTO = new CompanyDTO("NewCompany", "NewCountry", "NewCity", "22222", "NewStreet", "2", "222-222-2222", "new@example.com", "https://www.newcompany.com", "New comment");
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/company/123")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(updatedCompanyDTO)))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value("123"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("NewCompany"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.country").value("NewCountry"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.city").value("NewCity"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.plz").value("22222"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.street").value("NewStreet"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.streetNumber").value("2"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.phoneNumber").value("222-222-2222"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.email").value("new@example.com"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.website").value("https://www.newcompany.com"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.comment").value("New comment"));
+    }
+
 
 }

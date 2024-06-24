@@ -35,4 +35,10 @@ public class CompanyController {
     public void deleteCompany(@PathVariable String id) {
         companyService.deleteCompanyById(id);
     }
+
+    @PutMapping("/company/{id}")
+    Company putCompany(@Valid @RequestBody CompanyDTO companyDTO
+            ,@PathVariable String id) throws CompanyNotFoundException {
+        return companyService.updateCompany(companyDTO, id);
+    }
 }

@@ -1,7 +1,62 @@
-.deleteButton{
-    background-color: indianred;
-    border: black solid 1px;
-    padding: 5px 5px;
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: left;
+}
+
+.topButtonsRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.backButton,
+.deleteButton,
+.updateButton {
+    background-color: cornflowerblue;
+    border: 1px solid black;
+    padding: 5px 10px;
     cursor: pointer;
     border-radius: 5px;
+    color: black;
+}
+
+.deleteButton {
+    background-color: indianred;
+}
+
+.updateButton {
+    background-color: orange;
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.formGroup {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.companyForm {
+    width: 700px;
+}
+
+label {
+    flex: 0 0 150px;
+    font-weight: bold;
+}
+
+input,
+textarea {
+    flex: 1;
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+textarea {
+    height: 100px;
 }

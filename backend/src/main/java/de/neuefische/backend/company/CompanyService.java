@@ -37,4 +37,21 @@ public class CompanyService {
             companyRepo.deleteById(id);
     }
 
+    public Company updateCompany(CompanyDTO companyDTO, String id) throws CompanyNotFoundException {
+        Company existingCompany = this.findCompanyById(id);
+
+        existingCompany.setName(companyDTO.getName().trim());
+        existingCompany.setCountry(companyDTO.getCountry().trim());
+        existingCompany.setCity(companyDTO.getCity().trim());
+        existingCompany.setPlz(companyDTO.getPlz().trim());
+        existingCompany.setStreet(companyDTO.getStreet().trim());
+        existingCompany.setStreetNumber(companyDTO.getStreetNumber().trim());
+        existingCompany.setPhoneNumber(companyDTO.getPhoneNumber().trim());
+        existingCompany.setEmail(companyDTO.getEmail().trim());
+        existingCompany.setWebsite(companyDTO.getWebsite().trim());
+        existingCompany.setComment(companyDTO.getComment().trim());
+
+        return companyRepo.save(existingCompany);
+    }
+
 }
