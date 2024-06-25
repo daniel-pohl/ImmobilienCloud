@@ -32,7 +32,7 @@ function CompanyDetail() {
             try {
                 const response = await axios.put(`/api/company/${id}`, formData);
                 console.log('Response:', response.data);
-                navigate('/');
+                navigate('/company');
                 alert('Company updated successfully');
             } catch (error) {
                 console.error('Error updating company:', error);
@@ -43,7 +43,7 @@ function CompanyDetail() {
     const handleDelete = () => {
         axios.delete(`/api/company/${id}`)
             .then(() => {
-                navigate('/');
+                navigate('/company');
                 alert(`Company ${formData?.name} deleted successfully`);
             })
             .catch(error => {
@@ -58,7 +58,7 @@ function CompanyDetail() {
     return (
         <div className="container">
             <div className="topButtonsRow">
-                <Link to={`/`}>
+                <Link to={`/company`}>
                     <button className="backButton">Back</button>
                 </Link>
                 <button className="deleteButton" onClick={handleDelete}>Delete</button>

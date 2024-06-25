@@ -1,0 +1,7 @@
+.immoButton{
+    background-color: cornflowerblue;
+    border: black solid 1px;
+    padding: 10px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
