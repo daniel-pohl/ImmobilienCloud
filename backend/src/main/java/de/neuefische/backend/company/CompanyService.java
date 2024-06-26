@@ -16,6 +16,9 @@ public class CompanyService {
         this.companyRepo = companyRepo;
         this.uuidService = uuidService;
     }
+    public List<Company> searchCompaniesByName(String name) {
+        return companyRepo.findByNameContainingIgnoreCase(name);
+    }
 
     public List<Company> allCompanies() {
         return companyRepo.findAll();

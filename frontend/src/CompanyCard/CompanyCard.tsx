@@ -14,7 +14,6 @@ function CompanyCard() {
 
 
     function fetchCompanies(){
-
         axios.get("/api/company")
             .then(response =>{
                 setCompanies(response.data)
