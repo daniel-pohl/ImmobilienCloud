@@ -12,13 +12,11 @@ function CompanyCard() {
     const [companies, setCompanies] = useState<Company[]>([]);
 
 
-
     function fetchCompanies(){
-
         axios.get("/api/company")
-            .then(response =>{
+            .then(response => {
                 setCompanies(response.data)
-            })
+            });
     }
 
     useEffect(fetchCompanies,[])
