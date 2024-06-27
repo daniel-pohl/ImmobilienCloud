@@ -1,0 +1,43 @@
+.contact-list-item{
+    border: black solid 1px;
+    border-radius: 5px;
+    margin: 5px;
+    list-style-type: none;
+    background-color: darkseagreen;
+}
+.page-container{
+    border: black solid 1px;
+    border-radius: 7px;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.sidebar-container {
+    display: flex;
+    flex-direction: row;
+}
+.div-contact-list{
+    border: black solid 1px;
+    border-radius: 7px;
+    margin: 10px;
+    padding: 10px;
+}
+.h2{
+    margin: 5px;
+}
+ul{
+    display: block;
+    padding: 1px;
+    margin: 1px;
+}
+
+.buttonCreate{
+    background-color: darkseagreen;
+    border: black solid 1px;
+    padding: 10px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+

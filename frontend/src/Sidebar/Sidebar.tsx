@@ -9,13 +9,13 @@ function Sidebar() {
                     <Link to="/company">Firmen</Link>
                 </li>
                 <li className="sidebar-list-item">
-                    <Link to="/company">Kontakte</Link>
+                    <Link to="/contact">Kontakte</Link>
                 </li>
                 <li className="sidebar-list-item">
-                    <Link to="/company">Objekte</Link>
+                    <Link to="/">Objekte</Link>
                 </li>
                 <li className="sidebar-list-item">
-                    <Link to="/company">Flächen</Link>
+                    <Link to="/">Flächen</Link>
                 </li>
             </ul>
         </div>
