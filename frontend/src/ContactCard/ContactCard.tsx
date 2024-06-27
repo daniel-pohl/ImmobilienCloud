@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {Contact} from "./Contact.ts";
-
+import './ContactCard.css';
 import {Link} from "react-router-dom";
 import Header from "../Header/Header.tsx";
 import Sidebar from "../Sidebar/Sidebar.tsx";
