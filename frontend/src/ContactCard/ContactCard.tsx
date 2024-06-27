@@ -39,7 +39,7 @@ function ContactCard() {
                         {contacts.map(contact => (
                             <li className="contact-list-item" key={contact.id}>
                                 <h2>{contact.name}</h2>
-                                <Link to={`/company/${contact.id}`}>
+                                <Link to={`/contact/${contact.id}`}>
                                     <h3>Details</h3>
                                 </Link>
                             </li>

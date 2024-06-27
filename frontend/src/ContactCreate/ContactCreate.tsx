@@ -53,7 +53,7 @@ function ContactCreate() {
             </Link>
             <br/>
 
-            <h2>Neue Firma erstellen</h2>
+            <h2>Neuen Kontakt erstellen</h2>
             <form onSubmit={handleSubmit}>
                 <label>Name:
                     <input type="text" name="name" value={formData.name} onChange={handleChange} required/>

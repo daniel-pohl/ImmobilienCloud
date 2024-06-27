@@ -32,7 +32,7 @@ function CompanyCard() {
                 <Sidebar/>
                 <div className="div-company-list">
                     <Link to="/companycreate">
-                        <button className="buttonCreate">Neue Firma anlegen</button>
+                        <button className="buttonCreate2">Neue Firma anlegen</button>
                     </Link>
                     <h1>Liste aller Firmen:</h1>
                     <ul>
