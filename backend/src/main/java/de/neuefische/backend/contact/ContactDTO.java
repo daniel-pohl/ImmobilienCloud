@@ -1,16 +1,15 @@
-package de.neuefische.backend.company;
+package de.neuefische.backend.contact;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CompanyDTO {
-    @NotBlank(message = "Der Firmenname darf nicht leer sein.")
+public class ContactDTO {
+    @NotBlank(message = "Der Kontaktname darf nicht leer sein.")
     private String name;
     private String country;
     private String city;
@@ -24,3 +23,4 @@ public class CompanyDTO {
 
 
 }
+

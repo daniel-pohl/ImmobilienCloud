@@ -1,9 +1,9 @@
-.company-list-item{
+.contact-list-item{
     border: black solid 1px;
     border-radius: 5px;
     margin: 5px;
     list-style-type: none;
-    background-color: springgreen;
+    background-color: yellow;
 }
 .page-container{
     border: black solid 1px;
@@ -18,7 +18,7 @@
     display: flex;
     flex-direction: row;
 }
-.div-company-list{
+.div-contact-list{
     border: black solid 1px;
     border-radius: 7px;
     margin: 10px;
@@ -33,8 +33,8 @@ ul{
     margin: 1px;
 }
 
-.buttonCreate2{
-    background-color: springgreen;
+.buttonCreate{
+    background-color: yellow;
     border: black solid 1px;
     padding: 10px 10px;
     cursor: pointer;
