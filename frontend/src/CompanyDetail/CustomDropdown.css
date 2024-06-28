@@ -1,0 +1,26 @@
+/* CustomDropdown.css */
+.custom-dropdown {
+    width: 100%;
+    max-width: 14rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0.5rem;
+}
+
+.custom-dropdown .p-dropdown-label {
+    font-size: 1rem;
+    color: #333;
+}
+
+.custom-dropdown .p-dropdown-panel {
+    border-color: #007ad9;
+}
+
+.custom-dropdown .p-dropdown-item {
+    color: #007ad9;
+}
+
+.custom-dropdown .p-dropdown-item.p-highlight {
+    background-color: #e0f3ff;
+    color: #005bb5;
+}

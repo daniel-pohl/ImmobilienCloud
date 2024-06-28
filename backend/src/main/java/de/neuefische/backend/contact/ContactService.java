@@ -35,6 +35,7 @@ public class ContactService {
     public Contact saveContact(ContactDTO contactDTO) {
         Contact contact = ContactMapper.toEntity(contactDTO);
         contact.setId(uuidService.generateId());
+        contact.setCompanyId("");
         return contactRepo.save(contact);
     }
 

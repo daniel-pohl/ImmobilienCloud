@@ -10,4 +10,5 @@ export type Company = {
     email: string,
     website: string,
     comment: string,
+    contactIds?: string[],
 }

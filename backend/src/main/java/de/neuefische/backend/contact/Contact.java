@@ -26,6 +26,6 @@ public class Contact {
     private String email;
     private String website;
     private String comment;
-
+    private String companyId;
 
 }

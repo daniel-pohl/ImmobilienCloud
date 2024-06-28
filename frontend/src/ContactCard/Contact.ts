@@ -10,4 +10,5 @@ export type Contact = {
     email: string,
     website: string,
     comment: string,
+    companyId: string,
 }
