@@ -6,11 +6,9 @@ import {Link} from "react-router-dom";
 import Header from "../Header/Header.tsx";
 import Sidebar from "../Sidebar/Sidebar.tsx";
 
-
 function ContactCard() {
 
     const [contacts, setContacts] = useState<Contact[]>([]);
-
 
     function fetchContacts(){
         axios.get("/api/contact")
