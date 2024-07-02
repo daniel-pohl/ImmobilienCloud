@@ -80,21 +80,25 @@ function CompanyDetail() {
 
     const addContactToCompany = async () => {
         if (selectedContact && formData) {
-            try {
-                const updatedCompany = {
-                    ...formData,
-                    contactIds: formData.contactIds?[...formData.contactIds, selectedContact.id]:[
-                        selectedContact.id,
-                    ],
-                };
-                console.log(updatedCompany);
-                const response = await axios.put(`/api/company/${id}`, updatedCompany);
-                setFormData(response.data);
-                console.log(response.data)
-                setSelectedContact(null);
-            } catch (error) {
-                console.error('Error adding contact:', error);
-                alert('Failed to add contact.');
+            if (!formData.contactIds?.includes(selectedContact.id)) {
+                try {
+                    const updatedCompany = {
+                        ...formData,
+                        contactIds: formData.contactIds ? [...formData.contactIds, selectedContact.id] : [
+                            selectedContact.id,
+                        ],
+                    };
+                    console.log(updatedCompany);
+                    const response = await axios.put(`/api/company/${id}`, updatedCompany);
+                    setFormData(response.data);
+                    console.log(response.data)
+                    setSelectedContact(null);
+                } catch (error) {
+                    console.error('Error adding contact:', error);
+                    alert('Failed to add contact.');
+                }
+            }else {
+                alert('Contact already exists in the company.');
             }
         }
     };
@@ -235,14 +239,14 @@ function CompanyDetail() {
                     >Kontakt zu Firma hinzufügen
                     </button>
                 </div>
-
+                <h2>Liste aller verknüpften Kontakte zur Firma:</h2>
                 <div>
                     <ul>
                         {formData.contactIds?.map(contactId => {
                             const contactInfo = getContactInfo(contactId);
                             return contactInfo ? (
                                 <li key={contactId}>
-                                    <h1>{contactInfo.name}</h1>
+                                    <h3>{contactInfo.name}</h3>
                                 </li>
                             ) : (
                                 <li key={contactId}>Kontaktinformationen nicht gefunden</li>
@@ -251,10 +255,8 @@ function CompanyDetail() {
                     </ul>
                 </div>
 
-
             </form>
         </div>
-
 
     );
 }
