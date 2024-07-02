@@ -20,7 +20,7 @@ public class ContactDTO {
     private String email;
     private String website;
     private String comment;
-
+    private String companyId;
 
 }
 

@@ -3,10 +3,19 @@ import {Link, useNavigate, useParams} from 'react-router-dom';
 import axios from 'axios';
 import './CompanyDetail.css';
 import {Company} from "../CompanyCard/Company.ts";
+import { Dropdown } from 'primereact/dropdown';
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
+import './CustomDropdown.css';
+import {Contact} from "../ContactCard/Contact.ts";
 
 function CompanyDetail() {
-    const {id} = useParams<{ id: string }>();
+    const { id } = useParams<{ id: string }>();
     const [formData, setFormData] = useState<Company | null>(null);
+    const [contacts, setContacts] = useState<Contact[]>([]);
+    const [selectedContact, setSelectedContact] = useState<Contact | null>(null);
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -18,6 +27,16 @@ function CompanyDetail() {
                 setFormData(null);
             });
     }, [id]);
+
+    useEffect(() => {
+        axios.get('/api/contact')
+            .then(response => {
+                setContacts(response.data);
+            })
+            .catch(error => {
+                console.error('Error loading contacts:', error);
+            });
+    }, []);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const {name, value} = event.target;
@@ -54,6 +73,35 @@ function CompanyDetail() {
     if (formData === null) {
         return <div>Company not found or loading...</div>;
     }
+
+    const handleContactChange = (e: { value: Contact }) => {
+        setSelectedContact(e.value);
+    };
+
+    const addContactToCompany = async () => {
+        if (selectedContact && formData) {
+            try {
+                const updatedCompany = {
+                    ...formData,
+                    contactIds: formData.contactIds?[...formData.contactIds, selectedContact.id]:[
+                        selectedContact.id,
+                    ],
+                };
+                console.log(updatedCompany);
+                const response = await axios.put(`/api/company/${id}`, updatedCompany);
+                setFormData(response.data);
+                console.log(response.data)
+                setSelectedContact(null);
+            } catch (error) {
+                console.error('Error adding contact:', error);
+                alert('Failed to add contact.');
+            }
+        }
+    };
+    const getContactInfo = (contactId: string) => {
+        return contacts.find(contact => contact.id === contactId);
+    };
+
 
     return (
         <div className="container">
@@ -169,6 +217,41 @@ function CompanyDetail() {
                     ></textarea>
                 </div>
                 <button className="updateButton" type="submit">Update Company</button>
+
+                <div className="card flex justify-content-center">
+                    <Dropdown
+                        value={selectedContact}
+                        onChange={handleContactChange}
+                        options={contacts}
+                        optionLabel="name"
+                        placeholder="Kontakt auswählen"
+                        className="custom-dropdown"
+                    />
+                    <button
+                        type="button"
+                        onClick={addContactToCompany}
+                        disabled={!selectedContact}
+                        className="addContactButton"
+                    >Kontakt zu Firma hinzufügen
+                    </button>
+                </div>
+
+                <div>
+                    <ul>
+                        {formData.contactIds?.map(contactId => {
+                            const contactInfo = getContactInfo(contactId);
+                            return contactInfo ? (
+                                <li key={contactId}>
+                                    <h1>{contactInfo.name}</h1>
+                                </li>
+                            ) : (
+                                <li key={contactId}>Kontaktinformationen nicht gefunden</li>
+                            );
+                        })}
+                    </ul>
+                </div>
+
+
             </form>
         </div>
 

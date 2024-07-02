@@ -3,7 +3,6 @@ package de.neuefische.backend.company;
 import de.neuefische.backend.exceptions.CompanyNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -15,6 +14,7 @@ public class CompanyController {
     public CompanyController(CompanyService companyService) {
         this.companyService = companyService;
     }
+
 
     @GetMapping("/company/search")
     public List<Company> searchCompanies(@RequestParam String name) {

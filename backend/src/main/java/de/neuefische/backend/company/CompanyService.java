@@ -4,6 +4,7 @@ import de.neuefische.backend.UuidService;
 import de.neuefische.backend.exceptions.CompanyNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,6 +34,7 @@ public class CompanyService {
     public Company saveCompany(CompanyDTO companyDTO) {
         Company company = CompanyMapper.toEntity(companyDTO);
         company.setId(uuidService.generateId());
+        company.setContactIds(new ArrayList<>());
         return companyRepo.save(company);
     }
 
@@ -53,8 +55,9 @@ public class CompanyService {
         existingCompany.setEmail(companyDTO.getEmail().trim());
         existingCompany.setWebsite(companyDTO.getWebsite().trim());
         existingCompany.setComment(companyDTO.getComment().trim());
-
+        existingCompany.setContactIds(companyDTO.getContactIds());
         return companyRepo.save(existingCompany);
     }
+
 
 }
