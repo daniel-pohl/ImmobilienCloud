@@ -16,7 +16,7 @@ class ContactServiceTest {
 
     @Test
     void allContacts() {
-        Contact expectedContact = new Contact("123", "John Doe", "Germany", "Berlin", "61355", "Demostreet", "132", "+492374928349", "test@mail.de", "www.test.de", "comment1235345 comment1235");
+        Contact expectedContact = new Contact("123", "John Doe", "Germany", "Berlin", "61355", "Demostreet", "132", "+492374928349", "test@mail.de", "www.test.de", "comment1235345 comment1235", "2345ouoh");
         List<Contact> expectedContacts = List.of(expectedContact);
         when(mockContactRepo.findAll()).thenReturn(expectedContacts);
 
@@ -29,7 +29,7 @@ class ContactServiceTest {
 
     @Test
     void findContactById_contactFound() throws ContactNotFoundException {
-        Contact expectedContact = new Contact("123", "John Doe", "Germany", "Berlin", "61355", "Demostreet", "132", "+492374928349", "test@mail.de", "www.test.de", "comment1235345 comment1235");
+        Contact expectedContact = new Contact("123", "John Doe", "Germany", "Berlin", "61355", "Demostreet", "132", "+492374928349", "test@mail.de", "www.test.de", "comment1235345 comment1235", "2345ouoh");
         when(mockContactRepo.findById("123")).thenReturn(Optional.of(expectedContact));
 
         ContactService contactService1 = new ContactService(mockContactRepo, mockUuidService);
@@ -50,7 +50,7 @@ class ContactServiceTest {
 
     @Test
     void saveContact_whenValidContact_shouldReturnCreatedContact() {
-        ContactDTO givenContactDTO = new ContactDTO("John Doe", "Germany", "Berlin", "61355", "Demostreet", "132", "+492374928349", "test@mail.de", "www.test.de", "comment1235345 comment1235");
+        ContactDTO givenContactDTO = new ContactDTO("John Doe", "Germany", "Berlin", "61355", "Demostreet", "132", "+492374928349", "test@mail.de", "www.test.de", "comment1235345 comment1235", "");
 
         Contact expectedContact = ContactMapper.toEntity(givenContactDTO);
         expectedContact.setId("123");
@@ -74,9 +74,9 @@ class ContactServiceTest {
 
     @Test
     void updateContact_whenValidContactDTO_shouldReturnUpdatedContact() throws ContactNotFoundException {
-        Contact existingContact = new Contact("123", "John Doe", "Germany", "Berlin", "61355", "Demostreet", "132", "+492374928349", "test@mail.de", "www.test.de", "comment1235345 comment1235");
-        ContactDTO updatedContactDTO = new ContactDTO("Jane Doe", "Germany", "Munich", "80331", "Newstreet", "456", "+491234567890", "jane@mail.de", "www.jane.de", "new comment");
-        Contact expectedUpdatedContact = new Contact("123", "Jane Doe", "Germany", "Munich", "80331", "Newstreet", "456", "+491234567890", "jane@mail.de", "www.jane.de", "new comment");
+        Contact existingContact = new Contact("123", "John Doe", "Germany", "Berlin", "61355", "Demostreet", "132", "+492374928349", "test@mail.de", "www.test.de", "comment1235345 comment1235", "2345ouoh");
+        ContactDTO updatedContactDTO = new ContactDTO("Jane Doe", "Germany", "Munich", "80331", "Newstreet", "456", "+491234567890", "jane@mail.de", "www.jane.de", "new comment", "2345ouoh");
+        Contact expectedUpdatedContact = new Contact("123", "Jane Doe", "Germany", "Munich", "80331", "Newstreet", "456", "+491234567890", "jane@mail.de", "www.jane.de", "new comment", "2345ouoh");
 
         when(mockContactRepo.findById("123")).thenReturn(Optional.of(existingContact));
         when(mockContactRepo.save(expectedUpdatedContact)).thenReturn(expectedUpdatedContact);
