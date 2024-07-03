@@ -16,6 +16,11 @@ public class ContactController {
         this.contactService = contactService;
     }
 
+    @PostMapping("/contact/{id}/favorite")
+    public Contact toggleFavorite(@PathVariable String id) throws ContactNotFoundException {
+        return contactService.toggleFavorite(id);
+    }
+
     @GetMapping("/contact")
     public List<Contact> getContacts() {
         return contactService.allContacts();

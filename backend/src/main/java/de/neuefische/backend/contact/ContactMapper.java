@@ -17,6 +17,7 @@ public class ContactMapper {
         contact.setWebsite(dto.getWebsite());
         contact.setComment(dto.getComment());
         contact.setCompanyId(dto.getCompanyId());
+        contact.setFavorite(dto.isFavorite());
         return contact;
     }
 

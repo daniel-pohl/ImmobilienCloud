@@ -23,6 +23,16 @@ function ContactCard() {
         return "Lade...."
     }
 
+    function handleFavoriteClick(id: string) {
+        axios.post(`/api/contact/${id}/favorite`)
+            .then(() => {
+                fetchContacts();
+            })
+            .catch(error => {
+                console.error("There was an error toggling the favorite status!", error);
+            });
+    }
+
     return (
         <div className="page-container">
             <Header />
@@ -40,6 +50,9 @@ function ContactCard() {
                                 <Link to={`/contact/${contact.id}`}>
                                     <h3>Details</h3>
                                 </Link>
+                                <button className="favorite-button" onClick={() => handleFavoriteClick(contact.id)}>
+                                    {contact.favorite ? "💚" : "🤍"}
+                                </button>
                             </li>
                         ))}
                     </ul>

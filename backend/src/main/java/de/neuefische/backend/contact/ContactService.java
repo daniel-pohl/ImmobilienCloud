@@ -18,10 +18,6 @@ public class ContactService {
         this.uuidService = uuidService;
     }
 
-    public List<Contact> searchContactsByName(String name) {
-        return contactRepo.findByNameContainingIgnoreCase(name);
-    }
-
     public List<Contact> allContacts() {
         return contactRepo.findAll();
     }
@@ -56,8 +52,16 @@ public class ContactService {
         existingContact.setEmail(contactDTO.getEmail().trim());
         existingContact.setWebsite(contactDTO.getWebsite().trim());
         existingContact.setComment(contactDTO.getComment().trim());
-
+        existingContact.setFavorite(contactDTO.isFavorite());
         return contactRepo.save(existingContact);
     }
 
+
+    public Contact toggleFavorite(String id) throws ContactNotFoundException {
+        Contact contact = contactRepo.findById(id)
+                .orElseThrow(() -> new ContactNotFoundException("Contact with id " + id + " not found"));
+
+        contact.setFavorite(!contact.isFavorite());
+        return contactRepo.save(contact);
+    }
 }

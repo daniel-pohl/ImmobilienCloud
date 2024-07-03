@@ -5,8 +5,8 @@ import de.neuefische.backend.exceptions.ContactNotFoundException;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Optional;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class ContactServiceTest {
@@ -16,7 +16,7 @@ class ContactServiceTest {
 
     @Test
     void allContacts() {
-        Contact expectedContact = new Contact("123", "John Doe", "Germany", "Berlin", "61355", "Demostreet", "132", "+492374928349", "test@mail.de", "www.test.de", "comment1235345 comment1235", "2345ouoh");
+        Contact expectedContact = new Contact("123", "John Doe", "Germany", "Berlin", "61355", "Demostreet", "132", "+492374928349", "test@mail.de", "www.test.de", "comment1235345 comment1235", "2345ouoh", false);
         List<Contact> expectedContacts = List.of(expectedContact);
         when(mockContactRepo.findAll()).thenReturn(expectedContacts);
 
@@ -29,7 +29,7 @@ class ContactServiceTest {
 
     @Test
     void findContactById_contactFound() throws ContactNotFoundException {
-        Contact expectedContact = new Contact("123", "John Doe", "Germany", "Berlin", "61355", "Demostreet", "132", "+492374928349", "test@mail.de", "www.test.de", "comment1235345 comment1235", "2345ouoh");
+        Contact expectedContact = new Contact("123", "John Doe", "Germany", "Berlin", "61355", "Demostreet", "132", "+492374928349", "test@mail.de", "www.test.de", "comment1235345 comment1235", "2345ouoh", false);
         when(mockContactRepo.findById("123")).thenReturn(Optional.of(expectedContact));
 
         ContactService contactService1 = new ContactService(mockContactRepo, mockUuidService);
@@ -50,7 +50,7 @@ class ContactServiceTest {
 
     @Test
     void saveContact_whenValidContact_shouldReturnCreatedContact() {
-        ContactDTO givenContactDTO = new ContactDTO("John Doe", "Germany", "Berlin", "61355", "Demostreet", "132", "+492374928349", "test@mail.de", "www.test.de", "comment1235345 comment1235", "");
+        ContactDTO givenContactDTO = new ContactDTO("John Doe", "Germany", "Berlin", "61355", "Demostreet", "132", "+492374928349", "test@mail.de", "www.test.de", "comment1235345 comment1235", "", false);
 
         Contact expectedContact = ContactMapper.toEntity(givenContactDTO);
         expectedContact.setId("123");
@@ -74,9 +74,9 @@ class ContactServiceTest {
 
     @Test
     void updateContact_whenValidContactDTO_shouldReturnUpdatedContact() throws ContactNotFoundException {
-        Contact existingContact = new Contact("123", "John Doe", "Germany", "Berlin", "61355", "Demostreet", "132", "+492374928349", "test@mail.de", "www.test.de", "comment1235345 comment1235", "2345ouoh");
-        ContactDTO updatedContactDTO = new ContactDTO("Jane Doe", "Germany", "Munich", "80331", "Newstreet", "456", "+491234567890", "jane@mail.de", "www.jane.de", "new comment", "2345ouoh");
-        Contact expectedUpdatedContact = new Contact("123", "Jane Doe", "Germany", "Munich", "80331", "Newstreet", "456", "+491234567890", "jane@mail.de", "www.jane.de", "new comment", "2345ouoh");
+        Contact existingContact = new Contact("123", "John Doe", "Germany", "Berlin", "61355", "Demostreet", "132", "+492374928349", "test@mail.de", "www.test.de", "comment1235345 comment1235", "2345ouoh", false);
+        ContactDTO updatedContactDTO = new ContactDTO("Jane Doe", "Germany", "Munich", "80331", "Newstreet", "456", "+491234567890", "jane@mail.de", "www.jane.de", "new comment", "2345ouoh", false);
+        Contact expectedUpdatedContact = new Contact("123", "Jane Doe", "Germany", "Munich", "80331", "Newstreet", "456", "+491234567890", "jane@mail.de", "www.jane.de", "new comment", "2345ouoh", false);
 
         when(mockContactRepo.findById("123")).thenReturn(Optional.of(existingContact));
         when(mockContactRepo.save(expectedUpdatedContact)).thenReturn(expectedUpdatedContact);
@@ -89,4 +89,28 @@ class ContactServiceTest {
 
         assertEquals(expectedUpdatedContact, result);
     }
+
+    @Test
+    void toggleFavorite_contactExists_shouldToggleFavoriteStatus() throws ContactNotFoundException {
+        Contact contact = new Contact("123", "John Doe", "Germany", "Berlin", "61355", "Demostreet", "132", "+492374928349", "test@mail.de", "www.test.de", "comment1235345 comment1235", "2345ouoh", false);
+        when(mockContactRepo.findById("123")).thenReturn(Optional.of(contact));
+        when(mockContactRepo.save(any(Contact.class))).thenAnswer(i -> i.getArguments()[0]);
+        ContactService contactService = new ContactService(mockContactRepo, mock(UuidService.class));
+
+        Contact updatedContact = contactService.toggleFavorite("123");
+
+        verify(mockContactRepo).findById("123");
+        verify(mockContactRepo).save(contact);
+        assertTrue(updatedContact.isFavorite());
+    }
+    @Test
+    void toggleFavorite_contactNotFound_shouldThrowException() {
+        when(mockContactRepo.findById("123")).thenReturn(Optional.empty());
+
+        ContactService contactService = new ContactService(mockContactRepo, mock(UuidService.class));
+
+        assertThrows(ContactNotFoundException.class, () -> contactService.toggleFavorite("123"));
+        verify(mockContactRepo).findById("123");
+    }
+
 }
