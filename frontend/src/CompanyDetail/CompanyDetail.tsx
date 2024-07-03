@@ -51,7 +51,6 @@ function CompanyDetail() {
             try {
                 const response = await axios.put(`/api/company/${id}`, formData);
                 console.log('Response:', response.data);
-                navigate('/company');
                 alert('Company updated successfully');
             } catch (error) {
                 console.error('Error updating company:', error);
@@ -106,6 +105,22 @@ function CompanyDetail() {
         return contacts.find(contact => contact.id === contactId);
     };
 
+    const removeContactFromCompany = async (contactId: string) => {
+        if (formData) {
+            try {
+                const updatedContactIds = formData.contactIds?.filter(id => id !== contactId);
+                const updatedCompany = {
+                    ...formData,
+                    contactIds: updatedContactIds,
+                };
+                const response = await axios.put(`/api/company/${id}`, updatedCompany);
+                setFormData(response.data);
+            } catch (error) {
+                console.error('Error removing contact:', error);
+                alert('Failed to remove contact.');
+            }
+        }
+    };
 
     return (
         <div className="container">
@@ -241,12 +256,13 @@ function CompanyDetail() {
                 </div>
                 <h2>Liste aller verknüpften Kontakte zur Firma:</h2>
                 <div>
-                    <ul>
+                    <ul className="contact-list">
                         {formData.contactIds?.map(contactId => {
                             const contactInfo = getContactInfo(contactId);
                             return contactInfo ? (
                                 <li key={contactId}>
                                     <h3>{contactInfo.name}</h3>
+                                    <button onClick={() => removeContactFromCompany(contactId)}>🗑️</button>
                                 </li>
                             ) : (
                                 <li key={contactId}>Kontaktinformationen nicht gefunden</li>
