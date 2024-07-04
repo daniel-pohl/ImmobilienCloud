@@ -3,7 +3,7 @@ import {Link, useNavigate, useParams} from 'react-router-dom';
 import axios from 'axios';
 import './CompanyDetail.css';
 import {Company} from "../CompanyCard/Company.ts";
-import { Dropdown } from 'primereact/dropdown';
+import {Dropdown} from 'primereact/dropdown';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
@@ -11,7 +11,7 @@ import './CustomDropdown.css';
 import {Contact} from "../ContactCard/Contact.ts";
 
 function CompanyDetail() {
-    const { id } = useParams<{ id: string }>();
+    const {id} = useParams<{ id: string }>();
     const [formData, setFormData] = useState<Company | null>(null);
     const [contacts, setContacts] = useState<Contact[]>([]);
     const [selectedContact, setSelectedContact] = useState<Contact | null>(null);
@@ -96,7 +96,7 @@ function CompanyDetail() {
                     console.error('Error adding contact:', error);
                     alert('Failed to add contact.');
                 }
-            }else {
+            } else {
                 alert('Contact already exists in the company.');
             }
         }
@@ -123,7 +123,7 @@ function CompanyDetail() {
     };
 
     return (
-        <div className="container">
+        <div className="containerCompany">
             <div className="topButtonsRow">
                 <Link to={`/company`}>
                     <button className="backButton">Back</button>
@@ -259,14 +259,13 @@ function CompanyDetail() {
                     <ul className="contact-list">
                         {formData.contactIds?.map(contactId => {
                             const contactInfo = getContactInfo(contactId);
-                            return contactInfo ? (
-                                <li key={contactId}>
-                                    <h3>{contactInfo.name}</h3>
-                                    <button onClick={() => removeContactFromCompany(contactId)}>🗑️</button>
-                                </li>
-                            ) : (
-                                <li key={contactId}>Kontaktinformationen nicht gefunden</li>
-                            );
+                            return contactInfo
+                                ? (
+                                    <li key={contactId}>
+                                        <h3>{contactInfo.name}</h3>
+                                        <button onClick={() => removeContactFromCompany(contactId)}>🗑️</button>
+                                    </li>)
+                                : null;
                         })}
                     </ul>
                 </div>
