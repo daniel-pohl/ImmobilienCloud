@@ -27,5 +27,5 @@ public class Contact {
     private String website;
     private String comment;
     private String companyId;
-
+    private boolean favorite;
 }

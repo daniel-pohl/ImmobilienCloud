@@ -15,7 +15,8 @@ function ContactCreate() {
         phoneNumber: '',
         email: '',
         website: '',
-        comment: ''
+        comment: '',
+        favorite: false,
     });
     const navigate = useNavigate();
 
@@ -31,7 +32,7 @@ function ContactCreate() {
         console.log('Response:', response.data);
         navigate('/contact');
         alert('Contact created successfully');
-        setFormData({  // Reset the form fields to empty after successful submission
+        setFormData({
             name: '',
             country: '',
             city: '',
@@ -41,7 +42,8 @@ function ContactCreate() {
             phoneNumber: '',
             email: '',
             website: '',
-            comment: ''
+            comment: '',
+            favorite: false,
         });
 
     };

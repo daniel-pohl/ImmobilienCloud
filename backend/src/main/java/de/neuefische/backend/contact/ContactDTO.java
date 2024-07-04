@@ -21,6 +21,6 @@ public class ContactDTO {
     private String website;
     private String comment;
     private String companyId;
-
+    private boolean favorite;
 }
 

@@ -41,3 +41,11 @@ ul{
     border-radius: 5px;
 }
 
+.favorite-button {
+    background-color: white;
+    border: black solid 1px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+

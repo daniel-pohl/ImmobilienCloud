@@ -11,4 +11,5 @@ export type Contact = {
     website: string,
     comment: string,
     companyId: string,
+    favorite: boolean,
 }
