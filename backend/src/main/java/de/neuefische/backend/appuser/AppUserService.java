@@ -1,5 +1,6 @@
 package de.neuefische.backend.appuser;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -21,12 +22,16 @@ public class AppUserService {
     }
 
     public AppUserResponse getLoggedInUser() {
-        var principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        var principal = (User) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+
         AppUser appUser = findByUsername(principal.getUsername());
         return new AppUserResponse(appUser.getId(), appUser.getUsername());
     }
 
-    public AppUserResponse register(AppUserRegister appUserRegister) {
+    public AppUserResponse register(@NotNull AppUserRegister appUserRegister) {
         AppUser appUser = new AppUser();
         appUser.setUsername(appUserRegister.username());
         appUser.setPassword(passwordEncoder.encode(appUserRegister.password()));

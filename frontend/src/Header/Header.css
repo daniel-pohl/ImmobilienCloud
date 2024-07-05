@@ -1,5 +1,16 @@
-.immoButton{
+.div-header{
+    display: flex;
+    justify-content: space-between;
+}
+.immo-Button{
     background-color: cornflowerblue;
+    border: black solid 1px;
+    padding: 10px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.logout-Button{
+    background-color: palevioletred;
     border: black solid 1px;
     padding: 10px 10px;
     cursor: pointer;

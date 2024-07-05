@@ -18,13 +18,13 @@ function Header() {
 
 
     return (
-        <div>
+        <div className="div-header">
             <Link to={`/`}>
-                <button className="immoButton">
+                <button className="immo-Button">
                     🏠Immobilienverwaltung
                 </button>
             </Link>
-            <button onClick={logout}>Logout</button>
+            <button onClick={logout} className="logout-Button">Logout</button>
         </div>
     );
 }
