@@ -24,7 +24,6 @@ function MainPage() {
             });
     }
 
-
     function handleSearch(event: React.FormEvent) {
         event.preventDefault();
 
@@ -79,9 +78,7 @@ function MainPage() {
                     )}
                 </div>
             </div>
-
         </div>
     );
 }
-
 export default MainPage;

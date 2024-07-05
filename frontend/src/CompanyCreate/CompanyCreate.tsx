@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
+import './CompanyCreate.css';
 
 function CompanyCreate() {
 
@@ -54,7 +55,7 @@ function CompanyCreate() {
             <br/>
 
             <h2>Neue Firma erstellen</h2>
-            <form onSubmit={handleSubmit}>
+            <form className="formCompanyCreate" onSubmit={handleSubmit}>
                 <label>Name:
                     <input type="text" name="name" value={formData.name} onChange={handleChange} required/>
                     <br/>

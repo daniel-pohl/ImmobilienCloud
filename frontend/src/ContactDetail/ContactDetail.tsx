@@ -56,7 +56,7 @@ function ContactDetail() {
     }
 
     return (
-        <div className="container">
+        <div className="containerContact">
             <div className="topButtonsRow">
                 <Link to={`/contact`}>
                     <button className="backButton">Back</button>
