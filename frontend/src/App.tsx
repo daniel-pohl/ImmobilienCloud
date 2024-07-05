@@ -14,17 +14,22 @@ import axios from "axios";
 
 function App() {
 
-    const [user, setUser] = useState<string>()
+    const [user, setUser]
+        = useState<string>()
 
-    function getUser(){
-        axios.get("/api/users/me")
-            .then(response => {
-                setUser(response.data)
-                console.log(user);
-            })
-    }
-
-    useEffect(()=> {getUser()}, [])
+    useEffect(() => {
+        function getUser() {
+            axios.get("/api/users/me")
+                .then(response => {
+                    setUser(response.data);
+                    console.log(response.data);
+                })
+                .catch(() => {
+                    setUser(undefined);
+                });
+        }
+        getUser();
+    }, []);
 
   return (
 

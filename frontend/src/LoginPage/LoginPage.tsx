@@ -9,9 +9,6 @@ function LoginPage() {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-
-
-
     function login() {
         axios.post("/api/users/login", {}, {
             auth: {
