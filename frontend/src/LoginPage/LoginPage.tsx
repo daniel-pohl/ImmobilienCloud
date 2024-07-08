@@ -3,7 +3,7 @@ import axios from "axios";
 import {FormEvent, useState} from "react";
 import {useNavigate} from 'react-router-dom';
 
-function LoginPage() {
+function LoginPage(props: Readonly<{ getUser: () => Promise<void> }>) {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -16,16 +16,18 @@ function LoginPage() {
                 password: password
             }
         })
-            .then(()=>{
+            .then(() => {
                 setPassword("");
                 setUsername("");
-                navigate('/');
+                props.getUser()
+                    .then(() => {
+                    navigate('/');
             })
             .catch(error => {
                 setPassword("");
-                console.log(error)
-            })
-    }
+                console.log(error);
+            });
+    })}
 
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();

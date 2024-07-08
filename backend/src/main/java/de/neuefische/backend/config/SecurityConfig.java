@@ -27,8 +27,7 @@ public class SecurityConfig {
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
                 .authorizeHttpRequests(authorizeRequests ->
                     authorizeRequests
-                            .requestMatchers(HttpMethod.POST, "/api/users/register").permitAll()
-                            .anyRequest().authenticated()
+                            .requestMatchers(HttpMethod.POST, "/api/users/register").permitAll() .anyRequest().authenticated()
 
                 )
                 .httpBasic(httpSecurityHttpBasicConfigurer -> httpSecurityHttpBasicConfigurer.authenticationEntryPoint((request, response, authException) -> response.sendError(401)));

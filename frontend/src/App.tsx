@@ -17,24 +17,24 @@ function App() {
     const [user, setUser]
         = useState<string>()
 
+    function getUser() {
+        return axios.get("/api/users/me")
+            .then(response => {
+                setUser(response.data);
+            })
+            .catch(() => {
+                setUser(undefined);
+            });
+    }
+
     useEffect(() => {
-        function getUser() {
-            axios.get("/api/users/me")
-                .then(response => {
-                    setUser(response.data);
-                    console.log(response.data);
-                })
-                .catch(() => {
-                    setUser(undefined);
-                });
-        }
         getUser();
     }, []);
 
   return (
 
       <Routes>
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/login" element={<LoginPage getUser={getUser}/>} />
 
           <Route element={<ProtectedRoute user={user}/>}>
 
