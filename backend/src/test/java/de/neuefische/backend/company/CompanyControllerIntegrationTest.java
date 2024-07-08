@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -12,7 +13,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import jakarta.servlet.ServletException;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.http.MediaType;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -31,6 +31,7 @@ class CompanyControllerIntegrationTest {
 
     @DirtiesContext
     @Test
+    @WithMockUser
     void getAllCompanies_whenNoCompanyInDB_thenReturnEmptyList() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/company"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -39,6 +40,7 @@ class CompanyControllerIntegrationTest {
 
     @DirtiesContext
     @Test
+    @WithMockUser
     void getAllCompanies_whenCompaniesInDB_thenReturnListOfCompanies() throws Exception {
         List<String> contactIdsToTest = List.of("sdfsr24", "sdf25");
         Company company = new Company(null, "TestFirma3", "TestCountry3", "TestCity3", "133335", "TestStreet", "3", "123-3333-7890", "test3@example.com", "https://www.testfirma3.com", "This is a test comment333.", contactIdsToTest);
@@ -67,6 +69,7 @@ class CompanyControllerIntegrationTest {
 
     @DirtiesContext
     @Test
+    @WithMockUser
     void getAllCompanies_whenOneCompanyInDB_thenReturnListOfOne() throws Exception {
         List<String> contactIdsToTest = List.of("sdfsr24", "sdf25");
         Company company = new Company(null, "TestFirma3", "TestCountry3", "TestCity3", "133335", "TestStreet", "3", "123-3333-7890", "test3@example.com", "https://www.testfirma3.com", "This is a test comment333.", contactIdsToTest);
@@ -97,6 +100,7 @@ class CompanyControllerIntegrationTest {
 
     @DirtiesContext
     @Test
+    @WithMockUser
     void getCompanyById_whenCompanyInDB_thenReturnCompany() throws Exception {
         List<String> contactIdsToTest = List.of("sdfsr24", "sdf25");
         Company company = new Company("123", "TestFirma3", "TestCountry3", "TestCity3", "133335", "TestStreet", "3", "123-3333-7890", "test3@example.com", "https://www.testfirma3.com", "This is a test comment333.", contactIdsToTest);
@@ -127,6 +131,7 @@ class CompanyControllerIntegrationTest {
 
     @DirtiesContext
     @Test
+    @WithMockUser
     void addCompany_whenValidRequest_thenReturnSavedCompany() throws Exception {
         List<String> contactIdsToTest = Collections.emptyList();
         CompanyDTO companyDTO = new CompanyDTO("TestFirma4", "TestCountry4", "TestCity4", "133336", "TestStreet", "4", "123-4444-7890", "test4@example.com", "https://www.testfirma4.com", "This is a test comment444.", contactIdsToTest);
@@ -153,6 +158,7 @@ class CompanyControllerIntegrationTest {
 
     @DirtiesContext
     @Test
+    @WithMockUser
     void addCompany_whenInvalidRequest_thenReturnBadRequest() throws Exception {
         List<String> contactIdsToTest = Collections.emptyList();
         CompanyDTO invalidCompanyDTO = new CompanyDTO(null, "TestCountry4", "TestCity4", "133336", "TestStreet", "4", "123-4444-7890", "test4@example.com", "https://www.testfirma4.com", "This is a test comment444.", contactIdsToTest);
@@ -165,6 +171,7 @@ class CompanyControllerIntegrationTest {
 
     @DirtiesContext
     @Test
+    @WithMockUser
     void deleteCompany_whenCompanyInDB_thenDBDoesNotContainCompanyAnymore() throws Exception {
 
         MvcResult resultCompanyToDelete = mockMvc.perform(MockMvcRequestBuilders.post("/api/company")
@@ -194,6 +201,7 @@ class CompanyControllerIntegrationTest {
 
     @DirtiesContext
     @Test
+    @WithMockUser
     void updateCompany_whenValidRequest_thenReturnUpdatedCompany() throws Exception {
         List<String> contactIdsToTest = Collections.emptyList();
         Company existingCompany = new Company("123", "OldCompany", "OldCountry", "OldCity", "11111", "OldStreet", "1", "111-111-1111", "old@example.com", "https://www.oldcompany.com", "Old comment", contactIdsToTest);

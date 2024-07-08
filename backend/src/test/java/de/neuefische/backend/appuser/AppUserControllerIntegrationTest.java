@@ -23,12 +23,30 @@ class AppUserControllerIntegrationTest {
     @Autowired
     ObjectMapper objectMapper;
 
+    @Autowired
+    AppUserService appUserService;
 
     @Test
     @WithAnonymousUser
     void getLoggedInUser_shouldReturnUnauthorized_whenUserIsNotLoggedIn() throws Exception {
         mockMvc.perform(get("/api/users/me"))
                 .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    @WithMockUser
+    void getLoggedInUser_shouldReturnUserDetails_whenUserIsLoggedIn() throws Exception {
+        AppUserRegister appUserRegister = new AppUserRegister("user", "test");
+
+        appUserService.register(appUserRegister);
+
+        mockMvc.perform(get("/api/users/me"))
+                .andExpect(status().isOk())
+                .andExpect(content().json( """
+                                                                                                   {
+                                    "username":"user"
+                        }
+                        """));
     }
 
     @Test
