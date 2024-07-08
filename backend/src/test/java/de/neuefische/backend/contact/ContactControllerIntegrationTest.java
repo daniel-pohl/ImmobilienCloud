@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -28,6 +29,7 @@ class ContactControllerIntegrationTest {
 
     @DirtiesContext
     @Test
+    @WithMockUser
     void getAllContacts_whenNoContactInDB_thenReturnEmptyList() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/contact"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -36,6 +38,7 @@ class ContactControllerIntegrationTest {
 
     @DirtiesContext
     @Test
+    @WithMockUser
     void getAllContacts_whenContactsInDB_thenReturnListOfContacts() throws Exception {
 
         Contact contact = new Contact(null, "TestKontakt3", "TestCountry3", "TestCity3", "133335", "TestStreet", "3", "123-3333-7890", "test3@example.com", "https://www.testkontakt3.com", "This is a test comment333.", "2345ouoh", false);
@@ -65,6 +68,7 @@ class ContactControllerIntegrationTest {
 
     @DirtiesContext
     @Test
+    @WithMockUser
     void getAllContacts_whenOneContactInDB_thenReturnListOfOne() throws Exception {
         Contact contact = new Contact(null, "TestKontakt3", "TestCountry3", "TestCity3", "133335", "TestStreet", "3", "123-3333-7890", "test3@example.com", "https://www.testkontakt3.com", "This is a test comment333.","2345ouoh", false);
         contactRepo.save(contact);
@@ -95,6 +99,7 @@ class ContactControllerIntegrationTest {
 
     @DirtiesContext
     @Test
+    @WithMockUser
     void getContactById_whenContactInDB_thenReturnContact() throws Exception {
         Contact contact = new Contact("123", "TestKontakt3", "TestCountry3", "TestCity3", "133335", "TestStreet", "3", "123-3333-7890", "test3@example.com", "https://www.testkontakt3.com", "This is a test comment333.","2345ouoh", false);
         contactRepo.save(contact);
@@ -122,6 +127,7 @@ class ContactControllerIntegrationTest {
 
     @DirtiesContext
     @Test
+    @WithMockUser
     void addContact_whenValidRequest_thenReturnSavedContact() throws Exception {
         ContactDTO contactDTO = new ContactDTO("TestKontakt4", "TestCountry4", "TestCity4", "133336", "TestStreet", "4", "123-4444-7890", "test4@example.com", "https://www.testkontakt4.com", "This is a test comment444.", "2345ouoh", false);
 
@@ -145,6 +151,7 @@ class ContactControllerIntegrationTest {
 
     @DirtiesContext
     @Test
+    @WithMockUser
     void addContact_whenInvalidRequest_thenReturnBadRequest() throws Exception {
         ContactDTO invalidContactDTO = new ContactDTO(null, "TestCountry4", "TestCity4", "133336", "TestStreet", "4", "123-4444-7890", "test4@example.com", "https://www.testkontakt4.com", "This is a test comment444.", "2345ouoh", false);
 
@@ -156,6 +163,7 @@ class ContactControllerIntegrationTest {
 
     @DirtiesContext
     @Test
+    @WithMockUser
     void deleteContact_whenContactInDB_thenDBDoesNotContainContactAnymore() throws Exception {
         MvcResult resultContactToDelete = mockMvc.perform(MockMvcRequestBuilders.post("/api/contact")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -184,6 +192,7 @@ class ContactControllerIntegrationTest {
 
     @DirtiesContext
     @Test
+    @WithMockUser
     void updateContact_whenValidRequest_thenReturnUpdatedContact() throws Exception {
         Contact existingContact = new Contact("123", "OldContact", "OldCountry", "OldCity", "11111", "OldStreet", "1", "111-111-1111", "old@example.com", "https://www.oldcontact.com", "Old comment","2345ouoh", false);
         contactRepo.save(existingContact);
@@ -211,6 +220,7 @@ class ContactControllerIntegrationTest {
 
     @DirtiesContext
     @Test
+    @WithMockUser
     void toggleFavorite_whenValidRequest_thenReturnUpdatedContact() throws Exception {
         Contact existingContact = new Contact("123", "TestContact", "TestCountry", "TestCity", "12345", "TestStreet", "1", "123-456-7890", "test@example.com", "https://www.testcontact.com", "Test comment", "2345ouoh", false);
         contactRepo.save(existingContact);

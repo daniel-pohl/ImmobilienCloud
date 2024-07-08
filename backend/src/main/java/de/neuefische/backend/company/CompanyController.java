@@ -15,7 +15,6 @@ public class CompanyController {
         this.companyService = companyService;
     }
 
-
     @GetMapping("/company/search")
     public List<Company> searchCompanies(@RequestParam String name) {
         return companyService.searchCompaniesByName(name);
